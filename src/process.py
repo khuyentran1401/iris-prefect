@@ -52,6 +52,5 @@ def process(
     split_data = split_train_test(X, y, config.test_size)
     save_processed_data(split_data, data_location.process_location)
 
-
 if __name__ == "__main__":
     process()

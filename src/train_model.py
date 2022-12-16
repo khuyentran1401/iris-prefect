@@ -11,14 +11,10 @@ import numpy as np
 
 @task
 def get_data(data_location: str):
-    p = Path(data_location).glob("*")
-    files = {file.name: pd.read_pickle(file) for file in p}
-    return (
-        files["X_train"],
-        files["X_test"],
-        files["y_train"],
-        files["y_test"],
-    )
+    return {
+        file: pd.read_pickle(f"{data_location}/{file}")
+        for file in ["X_train", "X_test", "y_train", "y_test"]
+    }
 
 
 @task
@@ -45,10 +41,10 @@ def train(
     data_location: DataLocation = DataLocation(),
     svc_params: SVC_Params = SVC_Params(),
 ):
-    X_train, X_test, y_train, y_test = get_data(data_location.process_location)
-    model = train_model(svc_params, X_train, y_train)
-    predictions = predict(model, X_test)
-    evaluate(predictions, y_test)
+    data = get_data(data_location.process_location)
+    model = train_model(svc_params, data["X_train"], data["y_train"])
+    predictions = predict(model, data["X_test"])
+    evaluate(predictions, data["y_test"])
 
 
 if __name__ == "__main__":
