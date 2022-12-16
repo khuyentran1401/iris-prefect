@@ -1,12 +1,13 @@
-from sklearn.metrics import classification_report
+from pathlib import Path
 
-from sklearn.svm import SVC
+import numpy as np
 import pandas as pd
 from prefect import flow, task
-from config import DataLocation, SVC_Params
-from pathlib import Path
+from sklearn.metrics import classification_report
 from sklearn.model_selection import GridSearchCV
-import numpy as np
+from sklearn.svm import SVC
+
+from config import DataLocation, SVC_Params
 
 
 @task

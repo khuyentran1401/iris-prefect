@@ -1,8 +1,8 @@
 import pandas as pd
-
 from prefect import flow, task
 from sklearn.model_selection import train_test_split
-from config import ProcessConfig, DataLocation
+
+from config import DataLocation, ProcessConfig
 
 
 @task
@@ -51,6 +51,7 @@ def process(
     X, y = get_X_y(processed, config.label)
     split_data = split_train_test(X, y, config.test_size)
     save_processed_data(split_data, data_location.process_location)
+
 
 if __name__ == "__main__":
     process()
