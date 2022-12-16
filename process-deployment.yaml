@@ -1,0 +1,97 @@
+###
+### A complete description of a Prefect Deployment for flow 'process'
+###
+name: iris-process
+description: null
+version: f7ca4543d82a252f817b6b94b755818f
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {}
+schedule: null
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: process
+manifest_path: null
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  _block_document_id: fe6b1b3f-8a96-424a-b03d-e99d6d254dda
+  _block_document_name: anonymous-1fe6d589-1502-4ab2-a7c3-f3e9103f43c4
+  _is_anonymous: true
+  block_type_slug: process
+  _block_type_slug: process
+storage: null
+path: /Users/khuyen/iris-prefect
+entrypoint: src/process.py:process
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    data_location:
+      title: data_location
+      default:
+        raw_location: data/raw
+        raw_file: iris.csv
+        process_location: data/processed
+      allOf:
+      - $ref: '#/definitions/DataLocation'
+    config:
+      title: config
+      default:
+        drop_columns:
+        - Id
+        label: Species
+        test_size: 0.3
+      allOf:
+      - $ref: '#/definitions/ProcessConfig'
+  required: null
+  definitions:
+    DataLocation:
+      title: DataLocation
+      type: object
+      properties:
+        raw_location:
+          title: Raw Location
+          default: data/raw
+          enum:
+          - data/raw
+          - data/processed
+          type: string
+        raw_file:
+          title: Raw File
+          default: iris.csv
+          type: string
+        process_location:
+          title: Process Location
+          default: data/processed
+          enum:
+          - data/raw
+          - data/processed
+          type: string
+    ProcessConfig:
+      title: ProcessConfig
+      type: object
+      properties:
+        drop_columns:
+          title: Drop Columns
+          default:
+          - Id
+          type: array
+          items: {}
+        label:
+          title: Label
+          default: Species
+          type: string
+        test_size:
+          title: Test Size
+          default: 0.3
+          type: number
