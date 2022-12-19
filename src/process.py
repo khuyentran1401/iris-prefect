@@ -6,7 +6,7 @@ from config import DataLocation, ProcessConfig
 
 
 @task
-def get_data(data_location: str, file_name: str):
+def get_raw_data(data_location: str, file_name: str):
     return pd.read_csv(f"{data_location}/{file_name}")
 
 
@@ -46,7 +46,7 @@ def process(
     data_location: DataLocation = DataLocation(),
     config: ProcessConfig = ProcessConfig(),
 ):
-    data = get_data(data_location.raw_location, data_location.raw_file)
+    data = get_raw_data(data_location.raw_location, data_location.raw_file)
     processed = drop_columns(data, config.drop_columns)
     X, y = get_X_y(processed, config.label)
     split_data = split_train_test(X, y, config.test_size)

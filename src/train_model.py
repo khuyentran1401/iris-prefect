@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import numpy as np
 import pandas as pd
 from prefect import flow, task
@@ -11,7 +9,7 @@ from config import DataLocation, SVC_Params
 
 
 @task
-def get_data(data_location: str):
+def get_processed_data(data_location: str):
     return {
         file: pd.read_pickle(f"{data_location}/{file}")
         for file in ["X_train", "X_test", "y_train", "y_test"]
@@ -42,7 +40,7 @@ def train(
     data_location: DataLocation = DataLocation(),
     svc_params: SVC_Params = SVC_Params(),
 ):
-    data = get_data(data_location.process_location)
+    data = get_processed_data(data_location.process_location)
     model = train_model(svc_params, data["X_train"], data["y_train"])
     predictions = predict(model, data["X_test"])
     evaluate(predictions, data["y_test"])

@@ -1,0 +1,37 @@
+###
+### A complete description of a Prefect Deployment for flow 'main'
+###
+name: main
+description: null
+version: bde17016bb2415c3a2be987ef7ef803a
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {}
+schedule: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: main
+manifest_path: null
+storage: null
+path: /Users/khuyen/iris-prefect
+entrypoint: src/main.py:main
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties: {}
+  required: null
+  definitions: null
