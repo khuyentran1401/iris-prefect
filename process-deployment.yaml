@@ -3,7 +3,7 @@
 ###
 name: iris-process
 description: null
-version: f7ca4543d82a252f817b6b94b755818f
+version: 65fcc7a9c82991933d2078f481c62a17
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
@@ -86,7 +86,8 @@ parameter_openapi_schema:
           default:
           - Id
           type: array
-          items: {}
+          items:
+            type: string
         label:
           title: Label
           default: Species

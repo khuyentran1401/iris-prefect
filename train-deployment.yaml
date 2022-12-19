@@ -3,7 +3,7 @@
 ###
 name: train_model
 description: null
-version: 6cf3c0b884748c7dfbb631bf9d7842e2
+version: 235fc72629fa7909729336b0f9f32255
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
