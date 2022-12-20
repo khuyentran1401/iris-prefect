@@ -3,7 +3,7 @@
 ###
 name: iris-process
 description: null
-version: 65fcc7a9c82991933d2078f481c62a17
+version: 9a44b78111ab386909613ad76978be63
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
@@ -55,28 +55,28 @@ parameter_openapi_schema:
       - $ref: '#/definitions/ProcessConfig'
   required: null
   definitions:
+    Location:
+      title: Location
+      description: An enumeration.
+      enum:
+      - data/raw
+      - data/processed
     DataLocation:
       title: DataLocation
       type: object
       properties:
         raw_location:
-          title: Raw Location
           default: data/raw
-          enum:
-          - data/raw
-          - data/processed
-          type: string
+          allOf:
+          - $ref: '#/definitions/Location'
         raw_file:
           title: Raw File
           default: iris.csv
           type: string
         process_location:
-          title: Process Location
           default: data/processed
-          enum:
-          - data/raw
-          - data/processed
-          type: string
+          allOf:
+          - $ref: '#/definitions/Location'
     ProcessConfig:
       title: ProcessConfig
       type: object
